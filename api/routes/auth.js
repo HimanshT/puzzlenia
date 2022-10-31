@@ -9,25 +9,30 @@ const JWT_SECRET = "puzzlenia";
 
 //creating a new user using POST:"/api/auth/createUser"
 router.post('/createUser', [
-    body('name', 'Enter a username of atleast 5 characters').isLength({ min: 5 }),
+    body('username', 'Enter a username of atleast 5 characters').notEmpty(),
     body('email', 'Enter a valid email').isEmail(),
-    body('password', 'Password must be atleast 8 characters').isLength({ min: 8 }),
+    body('password', 'Password must be atleast 8 characters').isLength({ min: 5 }),
 ], async (req, res) => {
     //if there are errors return the errors
+    // console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    //check if the user with same email exits
-    let user = await User.findOne({ email: req.body.email })
-    if (user) {
+    //check if the user with same email  or username exits
+    let check1 = await User.findOne({ username: req.body.username })
+    if (check1) {
+        return res.status(400).json({ error: "A user with same username already exits" });
+    }
+    let check2 = await User.findOne({ email: req.body.email })
+    if (check2) {
         return res.status(400).json({ error: "A user with same email already exits" });
     }
     //create a user
     const salt = await bcrypt.genSalt(10);
     const secPass = await bcrypt.hash(req.body.password, salt);
     user = await User.create({
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         password: secPass
     })
@@ -49,6 +54,7 @@ router.post('/loginUser', [
 ], async (req, res) => {
     //if there are any errors return bad request
     const errors = validationResult(req);
+    console.log(req.body);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
