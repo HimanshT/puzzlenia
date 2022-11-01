@@ -16,6 +16,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    practiceset: [],
 });
 
 const User = mongoose.model('User', UserSchema);

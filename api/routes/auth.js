@@ -34,7 +34,7 @@ router.post('/createUser', [
     user = await User.create({
         username: req.body.username,
         email: req.body.email,
-        password: secPass
+        password: secPass,
     })
     const data = {
         user: {
