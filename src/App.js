@@ -4,6 +4,7 @@ import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Navbar from "./components/Navbar";
 import Practice from "./components/usercomponents/Practice";
+import SingleQuestion from "./components/usercomponents/SingleQuestion";
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
             <Route path='/signin' element={<Signin />}></Route>
             <Route path='/signup' element={<Signup />}></Route>
             <Route path='/practice' element={<Practice />}></Route>
+            <Route path='/practice/:questionid' element={<SingleQuestion />}></Route>
           </Routes>
         </div>
       </BrowserRouter>}

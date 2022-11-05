@@ -8,4 +8,10 @@ router.get('/getquestionset', async (req, res) => {
     res.send(questions);
 })
 
+router.get('/getquestionset/:id', async (req, res) => {
+    const { id } = req.params;
+    const question = await Question.findById(id);
+    res.send(question);
+})
+
 module.exports = router;
