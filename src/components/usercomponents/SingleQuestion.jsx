@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar';
+import "../../stylesheets/singlequestion.css";
 
 const SingleQuestion = () => {
     const [data, setData] = useState({});
@@ -22,12 +24,25 @@ const SingleQuestion = () => {
     }, []);
 
     return (
-        <div>
-            <h1 className='display-9'>{data.question}</h1>
-            <button className="btn" type="submit" style={{ color: "red", }}>Submit</button>
-            <Link to="/practice">
-                <button className="btn" style={{ color: "blue", }}>Back</button>
-            </Link>
+        <div className='container'>
+            <Navbar />
+            <div className='container-md'>
+                <div id="topdistance" className="row align-items-center justify-content-center">
+                    <div className="col">
+                        <p>{data.question}</p>
+                    </div>
+                    <div className="col">
+                        <div class="input-group">
+                            <span class="input-group-text">Answer</span>
+                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                        </div>
+                        <button className='btn btn-success mt-3'>Submit</button>
+                    </div>
+                </div>
+                <Link to="/practice">
+                    <button className='btn btn-dark mt-3'>Back to Question</button>
+                </Link>
+            </div>
         </div>
     )
 }

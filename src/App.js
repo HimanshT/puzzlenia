@@ -5,11 +5,11 @@ import Signup from "./components/Signup";
 import Navbar from "./components/Navbar";
 import Practice from "./components/usercomponents/Practice";
 import SingleQuestion from "./components/usercomponents/SingleQuestion";
+import Footer from "./components/Footer";
 function App() {
   return (
     <>
       {<BrowserRouter>
-        <Navbar />
         <div className="container">
           <Routes>
             <Route path='/' element={<Landing />}></Route>
@@ -19,6 +19,7 @@ function App() {
             <Route path='/practice/:questionid' element={<SingleQuestion />}></Route>
           </Routes>
         </div>
+        <Footer />
       </BrowserRouter>}
     </>
   );

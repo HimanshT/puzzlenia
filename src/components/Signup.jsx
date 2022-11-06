@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import Img from '../images/signup.jpg'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import profileImage from "../images/profileimage.png"
+import LandingNavbar from "../components/LandingNavbar";
 //the signup page and it links to singin form as well,the from on submitting will send the data to POST request
 // /api/auth/createUser
 const Signup = () => {
@@ -22,7 +23,6 @@ const Signup = () => {
         })
         const json = await response.json();
         console.log(json);
-        console.log(json.success)
         localStorage.setItem('token', json.authtoken);
         navigate('/');
     }
@@ -33,35 +33,44 @@ const Signup = () => {
     }
 
     return (
-        <section>
-            <div className='grid grid-cols-1 h-full sm:grid-cols-2 w-full'>
-                <div className='sm:block'>
-                    <img className='w-full  h-full object-cover' src={Img} alt="" />
-                </div>
-                <div className='flex flex-col justify-center'>
-                    <form onSubmit={handleSubmit} className='max-w-[400px] w-full mx-auto rounded-lg bg-gray-900 p-8 px-8' style={{ backgroundColor: '#e9e798', color: '#242059' }}>
-                        <h2 className='text-4xl font-bold text-center'>SIGN UP</h2>
-                        <div className='flex flex-col py-2'>
-                            <label>Username</label>
-                            <input name="username" value={data.username} onChange={onChange} className='rounded-lg mt-2 p-2 focus:border-blue-500  focus:outline-none' type="text" />
+        <>
+            <LandingNavbar />
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 offset-md-3">
+                        <h2 className="text-center text-dark mt-4">Register to puzzlenia</h2>
+                        <div className="card my-3">
+                            <form onSubmit={handleSubmit} className="card-body cardbody-color p-lg-5">
+                                <div className="text-center">
+                                    <img src={profileImage} className="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                                        width="200px" alt="profile" />
+                                </div>
+                                <div className="mb-3">
+                                    <input type="text" name="username" value={data.username} onChange={onChange} className="form-control" id="Username" aria-describedby="emailHelp"
+                                        placeholder="User Name" />
+                                </div>
+                                <div className="mb-3">
+                                    <input type="email" onChange={onChange} value={data.email} name="email" className="form-control" id="email" aria-describedby="emailHelp"
+                                        placeholder="Email" />
+                                </div>
+                                <div className="mb-3">
+                                    <input type="password" onChange={onChange} value={data.password} name="password" className="form-control" id="password" placeholder="password" />
+                                </div>
+                                <div className="text-center"><button type="submit" className="btn btn-color px-5 mb-3 w-100">Signup</button></div>
+
+                                <Link to="/signin">
+                                    <div id="emailHelp" className="form-text text-center mb-5 text-dark">Already
+                                        Registered? <span className="text-dark fw-bold"> Login to your
+                                            Account</span>
+                                    </div>
+                                </Link>
+                            </form>
                         </div>
-                        <div className='flex flex-col py-2'>
-                            <label>Email</label>
-                            <input name="email" value={data.email} onChange={onChange} className='rounded-lg mt-2 p-2 focus:border-blue-500  focus:outline-none' type="email" />
-                        </div>
-                        <div className='flex flex-col py-2'>
-                            <label>Password</label>
-                            <input name="password" value={data.password} onChange={onChange} className='p-2 rounded-lg  mt-2 focus:border-blue-500  focus:outline-none' type="password" />
-                        </div>
-                        <button className='w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg' type='submit'>SIGN UP</button>
-                        <span>Already have an account?</span>
-                        <Link to='/signin'>
-                            <button href='/signin' className='w-full my-0 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg'>Sign In</button>
-                        </Link>
-                    </form>
+
+                    </div>
                 </div>
             </div>
-        </section>
+        </>
     )
 }
 

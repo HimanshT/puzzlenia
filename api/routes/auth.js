@@ -11,7 +11,7 @@ const JWT_SECRET = "puzzlenia";
 router.post('/createUser', [
     body('username', 'Enter a username of atleast 5 characters').notEmpty(),
     body('email', 'Enter a valid email').isEmail(),
-    body('password', 'Password must be atleast 8 characters').isLength({ min: 5 }),
+    body('password', 'Password must be atleast 8 characters').isLength({ min: 1 }),
 ], async (req, res) => {
     //if there are errors return the errors
     // console.log(req.body);
