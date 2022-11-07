@@ -43,7 +43,8 @@ router.post('/createUser', [
     }
     //creating a token for authorization
     const authToken = jwt.sign(data, JWT_SECRET);
-    res.json(authToken);
+    const success = true;
+    res.json({ success, authToken });
 })
 
 // Login a user Post request:/api/auth/loginUser

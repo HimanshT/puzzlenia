@@ -1,9 +1,13 @@
 import React from 'react'
 import logo from '../images/logo.jpg';
 import { Link } from "react-router-dom";
-
+import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
-    const isloggedin = false;
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/signin');
+    }
     return (
         <>
             <nav className="navbar bg-light fixed-top">
@@ -38,7 +42,7 @@ const Navbar = () => {
                                     <Link to="/dashboard" className="nav-link" href="#">Dashboard</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to="/" className="nav-link" href="#"><button className='btn btn-danger'>{isloggedin ? 'Logout' : 'Login'}</button></Link>
+                                    <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
                                 </li>
                             </ul>
                         </div>

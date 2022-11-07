@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import fbImage from "../images/fb.png";
 import googleImage from "../images/google.png"
 import profileImage from "../images/profileimage.png"
 import '../stylesheets/signin.css';
@@ -25,7 +24,6 @@ const Signin = () => {
         })
         const json = await response.json();
         console.log(json);
-        console.log(json.success)
         localStorage.setItem('token', json.authtoken);
         navigate('/practice');
     }
@@ -34,6 +32,12 @@ const Signin = () => {
     const onChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
+
+    //google sigin
+    const google = () => {
+        window.open("http://localhost:5000/api/auth/google");
+    }
+
 
     return (
         <>
@@ -58,12 +62,7 @@ const Signin = () => {
                                 <div className="text-center"><button type="submit" className="btn btn-color px-5 mb-3 w-100">Login</button></div>
                                 <div className='row mt-2 text-center'>
                                     <div className="col">
-                                        <button className="btn btn-primary px-5 mb-1 w-100">
-                                            <img width="30" alt="fbimage" src={fbImage}></img>Facebook
-                                        </button>
-                                    </div>
-                                    <div className="col">
-                                        <button className="btn btn-dark px-5 mb-2 w-100">
+                                        <button className="btn btn-dark px-5 mb-2 w-100" onClick={google}>
                                             <img width="30" alt="googleimage" src={googleImage}></img>Google
                                         </button>
                                     </div>
