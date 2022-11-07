@@ -3,10 +3,14 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar';
 import "../../stylesheets/singlequestion.css";
+import { toast } from 'react-toastify';
+
 
 const SingleQuestion = () => {
     const [data, setData] = useState({});
+    const [response, setResponse] = useState({ ans: "" });
     const { questionid } = useParams();
+    const answer = data.answer;
     useEffect(() => {
         const getQuestion = async () => {
             const response = await fetch(`http://localhost:5000/api/question/getquestionset/${questionid}`, {
@@ -23,6 +27,20 @@ const SingleQuestion = () => {
         getQuestion();
     }, []);
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("checking ans");
+        if (answer === response.ans) {
+            toast("correct Answer");
+        } else {
+            toast("Wrong Answer");
+        }
+    }
+    //set the current value of ans
+    const onChange = (e) => {
+        setResponse({ ...response, [e.target.name]: e.target.value })
+    }
+
     return (
         <div className='container'>
             <Navbar />
@@ -31,12 +49,14 @@ const SingleQuestion = () => {
                     <div className="col">
                         <p>{data.question}</p>
                     </div>
-                    <div className="col">
-                        <div class="input-group">
-                            <span class="input-group-text">Answer</span>
-                            <textarea class="form-control" aria-label="With textarea"></textarea>
-                        </div>
-                        <button className='btn btn-success mt-3'>Submit</button>
+                    <div className='col'>
+                        <form onSubmit={handleSubmit}>
+                            <div class="form-group">
+                                <label for="response">Answer</label>
+                                <input onChange={onChange} value={response.ans} name="ans" type="text" class="form-control" id="response" />
+                            </div>
+                            <button type="submit" className='btn btn-success mt-3'>Submit</button>
+                        </form>
                     </div>
                 </div>
                 <Link to="/practice">

@@ -2,10 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./components/Landing";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
-import Navbar from "./components/Navbar";
 import Practice from "./components/usercomponents/Practice";
 import SingleQuestion from "./components/usercomponents/SingleQuestion";
 import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <>
@@ -20,6 +22,7 @@ function App() {
           </Routes>
         </div>
         <Footer />
+        <ToastContainer />
       </BrowserRouter>}
     </>
   );
