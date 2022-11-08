@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-
+const { Schema } = mongoose;
 //creating a question schema
 
-const QuestionSchema = mongoose.Schema({
+const QuestionSchema = new Schema({
     question: String,
     answer: String,
 });

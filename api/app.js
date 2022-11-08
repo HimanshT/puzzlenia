@@ -11,6 +11,7 @@ app.use(cors());
 
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/question', require('./routes/questionroute'));
+app.use('/api/user', require('./routes/userroute'));
 
 app.listen(port, () => {
     console.log('server connected');

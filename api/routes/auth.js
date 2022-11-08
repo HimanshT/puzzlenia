@@ -4,6 +4,7 @@ const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const jwt = require("jsonwebtoken");
 const bcrypt = require('bcrypt');
+const fetchuser = require('../middleware/fetchuser');
 // const fetchuser = require('../middleware/fetchuser')
 const JWT_SECRET = "puzzlenia";
 
@@ -79,6 +80,20 @@ router.post('/loginUser', [
 
     const authToken = jwt.sign(data, JWT_SECRET);
     res.json({ authToken });
+})
+
+//route to fetch the user from request to :/api/auth/getuser
+//Logged in user details
+
+router.post('/getuser', fetchuser, async (req, res) => {
+    try {
+        userId = req.user.id;
+        const user = await User.findById(userId).select("-password");
+        res.send(user);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).send('internal server error');
+    }
 })
 
 module.exports = router;

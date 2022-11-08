@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-
+const { Schema } = mongoose;
 //Creating the user schema
-const UserSchema = mongoose.Schema({
+const UserSchema = new Schema({
     username: {
         type: String,
         // required: true,---getting validation error if turned true
@@ -16,7 +16,12 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    practiceset: [],
+    practiceset: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Question'
+        }
+    ]
 });
 
 const User = mongoose.model('User', UserSchema);
