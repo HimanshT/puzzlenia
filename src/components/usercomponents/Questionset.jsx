@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import UserContext from '../../context/user/userContext';
+import { toast } from 'react-toastify';
 
 function Questionset() {
     const [data, setData] = useState([]);
@@ -22,13 +23,34 @@ function Questionset() {
         }
         getExercise();
     }, []);
+
+    //function to display the solved icon if the question is solved
+    const context = useContext(UserContext);
+    const { solvedQuestions, getSolvedQuestions } = context;
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            getSolvedQuestions();
+        } else {
+            toast("You are not signed in");
+        }
+    }, []);
+
     return (
-        <div className="container mx-auto mt-5">
+        <div className="container mx-auto" style={{ marginTop: "70px", }}>
             {data.map((e) => (
                 <div className="card mb-2">
                     <div className="card-body">
                         <p className="card-text">{e.question}</p>
-                        <Link to={`/practice/${e._id}`}><button className="btn btn-primary">Solve</button></Link>
+                        <div className="container">
+                            <Link to={`/practice/${e._id}`}><button className="btn btn-primary">Solve</button></Link>
+                            {solvedQuestions.indexOf(`${e._id}`) > -1 &&
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <circle cx="12" cy="12" r="9" />
+                                    <path d="M9 12l2 2l4 -4" />
+                                </svg>
+                            }
+                        </div>
                     </div>
                 </div>
             ))}
@@ -38,12 +60,3 @@ function Questionset() {
 
 export default Questionset
 
-
-// {/* <div className="p-6 max-w-screen-2xl mb-2 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-//                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{e.question}</p>
-//                     <Link to={`/practice/${e._id}`}
-//                         className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-//                         Solve
-//
-//                     </Link>
-//                 </div> */}

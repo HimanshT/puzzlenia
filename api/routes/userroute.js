@@ -18,17 +18,13 @@ router.post('/solvedquestion', fetchuser, async (req, res) => {
 })
 
 router.put('/addsolvedquestion', fetchuser, async (req, res) => {
-
-    console.log("router functionn worked");
     const { questionid } = req.body;
     userId = req.user.id;
     const user = await User.findById(userId);
     const question = await Question.findById(questionid);
     user.practiceset.push(question);
     user.save();
-    console.log(user);
-    res.send('successful');
-
+    res.send(user.practiceset);
 })
 
 module.exports = router;

@@ -3,7 +3,6 @@ const JWT_SECRET = "puzzlenia";
 
 //middleware to fetch the user from the token stored in localStorage
 const fetchuser = (req, res, next) => {
-    console.log('fetchuser chala hai');
     //receive the token from the header
     const token = req.header('auth-token');
     console.log(token);

@@ -3,7 +3,7 @@ import UserContext from './userContext';
 
 const UserState = (props) => {
     const host = "http://localhost:5000"
-    const [data, setData] = useState([]);
+    const [solvedQuestions, setSolvedQuestions] = useState([]);
 
     //Get the array of solved question id's of the user
     const getSolvedQuestions = async () => {
@@ -16,12 +16,11 @@ const UserState = (props) => {
         });
         const json = await response.json();
         console.log(json);
-        setData(json);
+        setSolvedQuestions(json);
     }
 
     //update the array with the id of the solve equation
     const addSolvedQuestion = async (questionid) => {
-        console.log('ye chala hai');
         const response = await fetch(`${host}/api/user/addsolvedquestion`, {
             method: 'PUT',
             headers: {
@@ -31,12 +30,12 @@ const UserState = (props) => {
             body: JSON.stringify({ questionid })
         });
         const json = await response.json();
-        // console.log(json);
-        // setData(json);
+        console.log(json);
+        setSolvedQuestions(json);
     }
 
     return (
-        <UserContext.Provider value={{ getSolvedQuestions, addSolvedQuestion }}>
+        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion }}>
             {props.children}
         </UserContext.Provider>
     )

@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar';
 import "../../stylesheets/singlequestion.css";
-import { toast } from 'react-toastify';
 import UserContext from '../../context/user/userContext';
+import { toast } from 'react-toastify';
 
 const SingleQuestion = () => {
     const [data, setData] = useState({});
