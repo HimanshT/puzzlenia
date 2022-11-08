@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar';
 import "../../stylesheets/singlequestion.css";
 import { toast } from 'react-toastify';
-
+import UserContext from '../../context/user/userContext';
 
 const SingleQuestion = () => {
     const [data, setData] = useState({});
@@ -27,15 +27,20 @@ const SingleQuestion = () => {
         getQuestion();
     }, []);
 
+    //sending the id of solved question to be added
+    const context = useContext(UserContext);
+    const { addSolvedQuestion } = context;
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("checking ans");
         if (answer === response.ans) {
+            addSolvedQuestion(data._id);
             toast("correct Answer");
         } else {
             toast("Wrong Answer");
         }
     }
+
     //set the current value of ans
     const onChange = (e) => {
         setResponse({ ...response, [e.target.name]: e.target.value })

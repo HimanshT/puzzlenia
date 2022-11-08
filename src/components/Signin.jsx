@@ -24,7 +24,7 @@ const Signin = () => {
         })
         const json = await response.json();
         console.log(json);
-        localStorage.setItem('token', json.authtoken);
+        localStorage.setItem('token', json.authToken);
         navigate('/practice');
     }
 
