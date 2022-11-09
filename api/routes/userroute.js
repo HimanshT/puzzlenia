@@ -17,6 +17,8 @@ router.post('/solvedquestion', fetchuser, async (req, res) => {
     }
 })
 
+//a put request to update and add the new solved question to the database
+//Put request to /api/user/addsolvedquestion
 router.put('/addsolvedquestion', fetchuser, async (req, res) => {
     const { questionid } = req.body;
     userId = req.user.id;
@@ -26,5 +28,13 @@ router.put('/addsolvedquestion', fetchuser, async (req, res) => {
     user.save();
     res.send(user.practiceset);
 })
+
+//route to find the user and return it by username,a post request to /api/user/finduser
+router.post('/finduser', fetchuser, async (req, res) => {
+    const { username } = req.body;
+    const user = await User.find({ username: username })
+    res.send(user);
+})
+
 
 module.exports = router;

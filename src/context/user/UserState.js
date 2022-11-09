@@ -4,7 +4,7 @@ import UserContext from './userContext';
 const UserState = (props) => {
     const host = "http://localhost:5000"
     const [solvedQuestions, setSolvedQuestions] = useState([]);
-
+    const [user, setFinduser] = useState({});
     //Get the array of solved question id's of the user
     const getSolvedQuestions = async () => {
         const response = await fetch(`${host}/api/user/solvedquestion`, {
@@ -34,8 +34,22 @@ const UserState = (props) => {
         setSolvedQuestions(json);
     }
 
+    //find the user data by its username
+    const finduser = async (username) => {
+        const response = await fetch(`${host}/api/user/finduser`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({ username })
+        });
+        const json = await response.json();
+        setFinduser(json);
+    }
+
     return (
-        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion }}>
+        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion, user, finduser }}>
             {props.children}
         </UserContext.Provider>
     )

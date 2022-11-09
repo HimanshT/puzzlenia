@@ -16,12 +16,16 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    followers: {
+        type: Number,
+        default: 0,
+    },
     practiceset: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Question'
         }
-    ]
+    ],
 });
 
 const User = mongoose.model('User', UserSchema);
