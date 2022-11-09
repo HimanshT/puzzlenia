@@ -8,12 +8,11 @@ const FindUser = () => {
     const [nameofuser, setNameofuser] = useState({ username: "" });
     const context = useContext(UserContext);
     const { user, finduser } = context;
-    const [loaded, isLoaded] = useState(false);
+
     //on click run the function finduser with the details of form
     const handleSubmit = async (e) => {
         e.preventDefault();
         await finduser(nameofuser.username);
-        isLoaded = true;
     }
 
     //set the current value of username
@@ -31,7 +30,7 @@ const FindUser = () => {
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                     {
-                        isLoaded && user.length > 0 ? <Userfound /> : <Usernotfound />
+                        JSON.stringify(user) !== '{}' ? <Userfound /> : <Usernotfound />
                     }
                 </div>
             </div>

@@ -33,7 +33,29 @@ router.put('/addsolvedquestion', fetchuser, async (req, res) => {
 router.post('/finduser', fetchuser, async (req, res) => {
     const { username } = req.body;
     const user = await User.find({ username: username })
-    res.send(user);
+    if (user.length)
+        res.send(user[0]);
+    else
+        res.send({});
+})
+
+//route to follow a user and return the updated user,a put request to /api/user/follow
+router.put('/follow', fetchuser, async (req, res) => {
+    //the person whom we have to follow
+    const { username } = req.body;
+    const value = await User.updateOne(
+        {
+            username: username
+        }, { $inc: { followers: 1 } });
+
+    const user1 = await User.find({ username: username })
+    // res.send(user1);
+    //the person who will be following
+    userId = req.user.id;
+    const user2 = await User.findById(userId)
+    user2.following.push(user1[0]);
+    await user2.save();
+    res.send(user2);
 })
 
 

@@ -48,8 +48,23 @@ const UserState = (props) => {
         setFinduser(json);
     }
 
+    //follow route user1(logged in person) follows user2(found person)
+    const follow = async (username) => {
+        const response = await fetch(`${host}/api/user/follow`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({ username })
+        });
+        const json = await response.json();
+        console.log(json);
+        // setFinduser(json);
+    }
+
     return (
-        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion, user, finduser }}>
+        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion, user, finduser, follow }}>
             {props.children}
         </UserContext.Provider>
     )

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import profileImage from "../images/profileimage.png"
+import signupImage from "../images/signup.png"
 import LandingNavbar from "../components/LandingNavbar";
 //the signup page and it links to singin form as well,the from on submitting will send the data to POST request
 // /api/auth/createUser
@@ -42,7 +42,7 @@ const Signup = () => {
                         <div className="card my-3">
                             <form onSubmit={handleSubmit} className="card-body cardbody-color p-lg-5">
                                 <div className="text-center">
-                                    <img src={profileImage} className="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                                    <img src={signupImage} className="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                                         width="200px" alt="profile" />
                                 </div>
                                 <div className="mb-3">

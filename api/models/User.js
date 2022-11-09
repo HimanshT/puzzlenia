@@ -20,6 +20,10 @@ const UserSchema = new Schema({
         type: Number,
         default: 0,
     },
+    following: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }],
     practiceset: [
         {
             type: Schema.Types.ObjectId,

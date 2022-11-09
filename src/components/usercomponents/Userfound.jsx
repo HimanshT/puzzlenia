@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useContext } from 'react';
 import UserContext from '../../context/user/userContext';
 import avatar from '../../images/avatar.jpg'
-
+import Follow from './Followcomponents/Follow';
+import Unfollow from './Followcomponents/Unfollow';
 const Userfound = () => {
     const context = useContext(UserContext);
     const { user } = context;
-
+    const [follows, setFollows] = useState(true);
     return (
         <div>
             <div className="container py-5">
@@ -18,15 +19,17 @@ const Userfound = () => {
                                     <img src={avatar}
                                         className="rounded-circle img-fluid" style={{ width: "100px" }} />
                                 </div>
-                                <h4 className="mb-2">{user[0].username}</h4>
+                                <h4 className="mb-2">{user.username}</h4>
                                 <p className="text-muted mb-4">@Puzzler <span className="mx-2">|</span> <a
-                                    href="#!">{user[0].email}</a></p>
-                                <button type="button" className="btn btn-primary btn-rounded btn-lg">
-                                    Follow
-                                </button>
+                                    href="#!">{user.email}</a></p>
+                                {follows ? <Unfollow /> : <Follow />}
                                 <div className="row mt-3">
-                                    <p className="col mb-2 h5">Questions Solved</p>
-                                    <p className="col text-muted mb-0">{user[0].practiceset.length}</p>
+                                    <p className="col mb-2 h5 text-info">Questions Solved</p>
+                                    <p className="col text-muted mb-0">{user.practiceset.length}</p>
+                                </div>
+                                <div className="row mt-3">
+                                    <p className="col mb-2 h5 text-info">Followers</p>
+                                    <p className="col text-muted mb-0 text-info">{user.followers}</p>
                                 </div>
                             </div>
                         </div>
