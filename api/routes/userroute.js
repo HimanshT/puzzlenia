@@ -55,8 +55,28 @@ router.put('/follow', fetchuser, async (req, res) => {
     const user2 = await User.findById(userId)
     user2.following.push(user1[0]);
     await user2.save();
-    res.send(user2);
+    res.send(user1[0]);
 })
 
+
+//route to unfollow a user and return the updated user,a put request to /api/user/unfollow
+router.put('/unfollow', fetchuser, async (req, res) => {
+    //the person whom we have to unfollow,his followers will decrease
+    const { username } = req.body;
+    await User.updateOne(
+        {
+            username: username
+        }, { $inc: { followers: -1 } });
+    const user1 = await User.find({ username: username })
+    const followingId = user1[0]._id;
+    //deleting the object id from login user database
+    userId = req.user.id;
+    await User.updateOne({ _id: userId }, {
+        $pull: { following: followingId }
+    })
+
+    const user2 = await User.findById(followingId);
+    res.send(user2);
+})
 
 module.exports = router;

@@ -59,12 +59,25 @@ const UserState = (props) => {
             body: JSON.stringify({ username })
         });
         const json = await response.json();
-        console.log(json);
-        // setFinduser(json);
+        setFinduser(json);
+    }
+
+    //follow route user1(logged in person) follows user2(found person)
+    const unfollow = async (username) => {
+        const response = await fetch(`${host}/api/user/unfollow`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            },
+            body: JSON.stringify({ username })
+        });
+        const json = await response.json();
+        setFinduser(json);
     }
 
     return (
-        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion, user, finduser, follow }}>
+        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion, user, finduser, follow, unfollow }}>
             {props.children}
         </UserContext.Provider>
     )

@@ -4,6 +4,7 @@ import UserContext from '../../context/user/userContext';
 import avatar from '../../images/avatar.jpg'
 import Follow from './Followcomponents/Follow';
 import Unfollow from './Followcomponents/Unfollow';
+
 const Userfound = () => {
     const context = useContext(UserContext);
     const { user } = context;
