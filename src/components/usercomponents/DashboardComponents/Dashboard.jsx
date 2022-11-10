@@ -9,23 +9,6 @@ const Dashboard = () => {
         loggedInUser();
     }, [])
 
-    //a function to handle the question data
-    const Handlequestiondata = async (questionid) => {
-        const response = await fetch(`http://localhost:5000/api/question/getquestionset/${questionid}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                "auth-token": localStorage.getItem('token')
-            }
-        });
-        const json = await response.json();
-        console.log(json);
-        return (
-            <div>
-                <p>{json.title}</p>
-            </div>
-        )
-    }
     return (
         <>
             <Navbar />
@@ -56,11 +39,6 @@ const Dashboard = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                {currentuser && currentuser.practiceset.map((q) => {
-                                    <Handlequestiondata questionid={q} />;
-                                })}
                             </div>
                         </div>
                     </div>
