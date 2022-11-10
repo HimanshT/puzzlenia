@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../../context/user/userContext';
@@ -26,6 +26,9 @@ function Questionset() {
         <div className="container mx-auto" style={{ marginTop: "70px", }}>
             {data.map((e) => (
                 <div className="card mb-2">
+                    <div class="card-header">
+                        {e.title}
+                    </div>
                     <div className="card-body">
                         <p className="card-text">{e.question}</p>
                         <div className="container">

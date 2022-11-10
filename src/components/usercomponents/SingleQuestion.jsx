@@ -51,6 +51,8 @@ const SingleQuestion = () => {
             <Navbar />
             <div className='container-md'>
                 <div id="topdistance" className="row align-items-center justify-content-center">
+                    <h1 className='mb-2 align-center' >{data.title}</h1>
+                    <hr></hr>
                     <div className="col">
                         <p>{data.question}</p>
                     </div>
@@ -64,9 +66,19 @@ const SingleQuestion = () => {
                         </form>
                     </div>
                 </div>
-                <Link to="/practice">
-                    <button className='btn btn-dark mt-3'>Back to Question</button>
-                </Link>
+                <div className="div">
+                    <Link to="/practice">
+                        <button className='btn btn-dark mt-3'>Back to Question</button>
+                    </Link>
+                    <button class="btn btn-danger mt-3 ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Hint
+                    </button>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body mt-2">
+                            {data.hint}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

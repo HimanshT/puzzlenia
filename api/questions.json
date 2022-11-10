@@ -1,52 +1,72 @@
 [
     {
-        "question": "The owner of a banana plantation has a camel. He wants to transport his 3000 bananas to the market, which is located after the desert. The distance between his banana plantation and the market is about 1000 kilometer. So he decided to take his camel to carry the bananas. The camel can carry at the maximum of 1000 bananas at a time, and it eats one banana for every kilometer it travels.What is the most bananas you can bring over to your destination?",
-        "answer": "533",
-        "answered": false
+        "sno": 1,
+        "title": "A Wolf, a Goat, and a Cabbage",
+        "question": "A man finds himself on a riverbank with a wolf, a goat, and a head of cabbage. He needs to transport all three to the other side of the river in his boat. However, the boat has room for only the man himself and one other item (either the wolf, the goat, or the cabbage). In his absence, the wolf would eat the goat, and the goat would eat the cabbage. Show how the man can get all these “passengers” to the other side.",
+        "hint": "The puzzle can be solved by using the state-space graph",
+        "answer": "7"
     },
     {
-        "question": "Three ants are sitting at the three corners of an equilateral triangle. Each ant starts randomly picks a direction and starts to move along the edge of the triangle. What is the probability that none of the ants collide?",
-        "answer": "0.25",
-        "answered": false
+        "sno": 2,
+        "title": " Ferrying Soldiers",
+        "question": "A detachment of 25 soldiers must cross a wide and deep river with no bridge in sight. They notice two 12-year-old boys playing in a rowboat by the shore. The boat is so tiny, however, that it can only hold two boys or one soldier. How can the soldiers get across the river and leave the boys in joint possession of the boat? How many times does the boat pass from shore to shore in your algorithm?",
+        "hint": "Use decrease and conquer strategy",
+        "answer": "100"
     },
     {
-        "question": "Four people need to cross a rickety bridge at night. Unfortunately, they have only one torch and the bridge is too dangerous to cross without one. The bridge is only strong enough to support two people at a time.Not all people take the same time to cross the bridge. Times for each person: 1 min, 2 mins, 7 mins and 10 mins. What is the shortest time needed for all four of them to cross the bridge?",
-        "answer": "17",
-        "answered": false
+        "sno": 3,
+        "title": "Predicting a Finger Count",
+        "question": "A little girl counts from 1 to 1000 using the fingers of her left hand as follows. She starts by calling her thumb 1, the first finger 2, middle finger 3, ring finger 4, and little finger 5. Then she reverses direction, calling the ring finger 6, middle finger 7, the first finger 8, and her thumb 9, after which she calls her first finger 10, and so on. If she continues to count in this manner, on which finger will she stop?",
+        "hint": "It is easy to see that the counting falls on the same finger every eighth number called. Therefore to answer the question, all one needs is to find the remainderof the division of 1000 by 8",
+        "answer": "1"
     },
     {
-        "question": "A man has two ropes of varying thickness (Those two ropes are not identical, they aren’t the same density nor the same length nor the same width). Each rope burns in 60 minutes. He actually wants to measure 45 mins.How can he measure 45 mins using only these two ropes.He can’t cut the one rope in half because the ropes are non-homogeneous and he can’t be sure how long it will burn.",
-        "answer": "45",
-        "answered": false
+        "sno": 4,
+        "title": "Bridge Crossing at Night",
+        "question": "Four people need to cross a rickety footbridge; they all begin on the same side. It is dark, and they have one flashlight. A maximum of two people can cross the bridge at one time. Any party that crosses, either one or two people, must have the flashlight with them. The flashlight must be walked back and forth; it cannot be thrown, for example. Person 1 takes 1 minute to cross the bridge, person 2 takes 2 minutes, person 3 takes 5 minutes,and person 4 takes 10 minutes. A pair must walk together at the rate of the slower person’s pace. For example, if person 1 and person 4 walk together, it will take them 10 minutes to get to the other side. If person 4 returns the flashlight, a total of 20 minutes have passed. Can they cross the bridge in 17 minutes?",
+        "hint": "It is obvious (and can be formally proved) that in an optimal solution two persons have to cross the bridge together and one person has to return the flashlight, if not, all the people are already on the other side.",
+        "answer": "17"
     },
     {
-        "question": "A bad king has a cellar of 1000 bottles of delightful and very expensive wine. A neighboring queen plots to kill the bad king and sends a servant to poison the wine. Fortunately (or say unfortunately) the bad king’s guards catch the servant after he has only poisoned one bottle. Alas, the guards don’t know which bottle but know that the poison is so strong that even if diluted 100,000 times it would still kill the king. Furthermore, it takes one month to have an effect. The bad king decides he will get some of the prisoners in his vast dungeons to drink the wine. Being a clever bad king he knows he needs to murder no more than 10 prisoners – believing he can fob off such a low death rate – and will still be able to drink the rest of the wine (999 bottles) at his anniversary party in 5 weeks time. Explain what is in mind of the king, how will he be able to do so ? (of course he has less then 1000 prisoners in his prisons)",
-        "answer": "10",
-        "answered": false
+        "sno": 5,
+        "title": "Jigsaw Puzzle Assembly",
+        "question": "A jigsaw puzzle contains 500 pieces. A “section” of the puzzle is a set of one or more pieces that have been connected to each other. A “move” consists",
+        "hint": "Dimak lagao",
+        "answer": "499"
     },
     {
-        "question": "You have 100 doors in a row that are all initially closed. you make 100 passes by the doors starting with the first door every time. the first time through you visit every door and toggle the door (if the door is closed, you open it, if its open, you close it). the second time you only visit every 2nd door (door #2, #4, #6). the third time, every 3rd door (door #3, #6, #9), ec, until you only visit the 100th door. What state are the doors in after the last pass? Which are open which are closed?",
-        "answer": "10",
-        "answered": false
+        "sno": 6,
+        "title": "A Fake Among Eight Coins",
+        "question": "There are eight identical-looking coins; one of these coins is counterfeit and is known to be lighter than the genuine coins. What is the minimum number of weighings needed to identify the fake coin with a two-pan balance scale without weights? ",
+        "hint": "e the problem cannot be solved in one weighing",
+        "answer": "2"
     },
     {
-        "question": "How many squares are on a chess board?",
-        "answer": "204",
-        "answered": false
+        "sno": 7,
+        "title": "Page Numbering",
+        "question": "Pages of a book are numbered sequentially starting with 1. If the total number of decimal digits used is equal to 1578, how many pages are there in the book?",
+        "hint": "To answer the puzzle’s question, we need to solve the equation 189 + 3(n − 99) = 1578.",
+        "answer": "562"
     },
     {
-        "question": "There are 13 caves arranged in a circle. There is a thief in one of the caves. Each day the thief can move to any one of adjacent cave or can stay in same cave in which he was staying the previous day. And each day, cops are allowed to enter any two caves of their choice.What is the minimum number of days to guarantee in which cops can catch the thief?",
-        "answer": "12",
-        "answered": false
+        "sno": 8,
+        "title": "Find the Rank",
+        "question": "If we generate a list of all “words” made of letters G, I, N, R, T, and U in lexicographic order starting with GINRTU and ending with UTRNIG, what position in the list will be occupied by TURING? (",
+        "hint": "The puzzle is an instance of a well-known problem called permutation ranking",
+        "answer": "598"
     },
     {
-        "question": "You are on your way to visit your Grandma, who lives at the end of the valley. It’s her anniversary, and you want to give her the cakes you’ve made. Between your house and her house, you have to cross 5 bridges, and as it goes in the land of make believe, there is a troll under every bridge! Each troll, quite rightly,insists that you pay a troll toll. Before you can cross their bridge, you have to give them half of the cakes you are carrying, but as they are kind trolls, they each give you back a single cake.How many cakes do you have to leave home with to make sure that you arrive at Grandma’s with exactly 2 cakes?",
-        "answer": "2",
-        "answered": false
+        "sno": 9,
+        "title": "Cutting a Stick",
+        "question": "A stick 100 units long needs to be cut into 100 unit pieces. What is the minimum number of cuts required if you are allowed to cut several stick pieces at the same time? Also outline an algorithm that performs this task with the minimum number of cuts for a stick of n units long.",
+        "hint": "Since cutting several pieces of a given stick at the same time is allowed, we need to concern ourselves only with finding a cutting algorithm that reduces the size of the longest piece present to size 1.",
+        "answer": "7"
     },
     {
-        "question": "A person dies, and he arrives at the gate to heaven. There are 3 doors in the heaven. One of the door leads to heaven, second one leads to a 1-day stay at hell and then back to the gate and the third one leads to a 2 day stay at hell and then back to the gate. Every time the person is back at the gate, the 3 doors are reshuffled. How long will it take the person to reach heaven?",
-        "answer": "3",
-        "answered": false
+        "sno": 10,
+        "title": " Lighter or Heavier?",
+        "question": "You have n > 2 identical-looking coins and a two-pan balance scale with no weights. One of the coins is a fake, but you do not know whether it is lighter or heavier than the genuine coins, which all weigh the same. Design an algorithm to determine in the minimum number of weighings whether the fake coin is lighter or heavier than the others",
+        "hint": "Start by taking aside one coin if n is odd and two coins if n is even. After that,divide the remaining even number of coins into two equal-size groups and put them on the opposite pans of the scale",
+        "answer": "2"
     }
 ]

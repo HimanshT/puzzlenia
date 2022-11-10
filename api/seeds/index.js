@@ -21,7 +21,10 @@ const seedDb = async () => {
     await Question.deleteMany({});
     for (let i = 0; i < 10; i++) {
         const q = new Question({
+            sno: i,
+            title: `${questions[i].title}`,
             question: `${questions[i].question}`,
+            hint: `${questions[i].hint}`,
             answer: `${questions[i].answer}`
         })
         await q.save();
