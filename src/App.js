@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import UserState from './context/user/UserState';
 import FindUser from "./components/usercomponents/FindUser";
 import Error from "./components/Error/Error";
+import Dashboard from "./components/usercomponents/DashboardComponents/Dashboard";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path='/practice' element={<Practice />}></Route>
               <Route path='/practice/:questionid' element={<SingleQuestion />}></Route>
               <Route path='/finduser' element={<FindUser />}></Route>
+              <Route path='/dashboard' element={<Dashboard />}></Route>
               <Route path='*' element={<Error />}></Route>
             </Routes>
           </div>

@@ -5,6 +5,7 @@ const UserState = (props) => {
     const host = "http://localhost:5000"
     const [solvedQuestions, setSolvedQuestions] = useState([]);
     const [user, setFinduser] = useState({});
+    const [currentuser, setCurrentUser] = useState(null);
     //Get the array of solved question id's of the user
     const getSolvedQuestions = async () => {
         const response = await fetch(`${host}/api/user/solvedquestion`, {
@@ -15,7 +16,6 @@ const UserState = (props) => {
             }
         });
         const json = await response.json();
-        console.log(json);
         setSolvedQuestions(json);
     }
 
@@ -30,7 +30,6 @@ const UserState = (props) => {
             body: JSON.stringify({ questionid })
         });
         const json = await response.json();
-        console.log(json);
         setSolvedQuestions(json);
     }
 
@@ -76,8 +75,21 @@ const UserState = (props) => {
         setFinduser(json);
     }
 
+    //find the current logged in user details to api : /api/auth/getuser
+    const loggedInUser = async () => {
+        const response = await fetch(`${host}/api/auth/getuser`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': localStorage.getItem('token')
+            }
+        });
+        const json = await response.json();
+        setCurrentUser(json);
+    }
+
     return (
-        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion, user, finduser, follow, unfollow }}>
+        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion, user, finduser, follow, unfollow, loggedInUser, currentuser }}>
             {props.children}
         </UserContext.Provider>
     )
