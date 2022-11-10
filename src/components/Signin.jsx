@@ -5,6 +5,7 @@ import googleImage from "../images/google.png"
 import profileImage from "../images/profileimage.png"
 import '../stylesheets/signin.css';
 import LandingNavbar from './LandingNavbar';
+import { toast } from "react-toastify";
 //the sign in page and it links to singup form
 const Signin = () => {
     //the below line initializes the values and updates accordingly in the page
@@ -22,10 +23,19 @@ const Signin = () => {
             },
             body: JSON.stringify({ email: data.email, password: data.password })
         })
-        const json = await response.json();
-        console.log(json);
-        localStorage.setItem('token', json.authToken);
-        navigate('/practice');
+        if (response.status === 400) {
+            const json = await response.json();
+            if (json.error) {
+                toast(json.error)
+            } else {
+                toast(json.errors[0].msg);
+            }
+        }
+        else {
+            const json = await response.json();
+            localStorage.setItem('token', json.authToken);
+            navigate('/practice');
+        }
     }
 
     //the values that you will enter in form will be stored here

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import signupImage from "../images/signup.png"
 import LandingNavbar from "../components/LandingNavbar";
+import { toast } from "react-toastify";
 //the signup page and it links to singin form as well,the from on submitting will send the data to POST request
 // /api/auth/createUser
 const Signup = () => {
@@ -21,10 +22,19 @@ const Signup = () => {
             },
             body: JSON.stringify({ username: data.username, email: data.email, password: data.password })
         })
-        const json = await response.json();
-        console.log(json);
-        localStorage.setItem('token', json.authToken);
-        navigate('/');
+        if (response.status === 400) {
+            const json = await response.json();
+            if (json.error) {
+                toast(json.error)
+            } else {
+                toast(json.errors[0].msg);
+            }
+        }
+        else {
+            const json = await response.json();
+            localStorage.setItem('token', json.authToken);
+            navigate('/practice');
+        }
     }
 
     //the values that you will enter in form will be stored here

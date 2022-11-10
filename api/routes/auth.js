@@ -17,6 +17,7 @@ router.post('/createUser', [
     //if there are errors return the errors
     // console.log(req.body);
     const errors = validationResult(req);
+    console.log(errors);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
@@ -56,7 +57,6 @@ router.post('/loginUser', [
 ], async (req, res) => {
     //if there are any errors return bad request
     const errors = validationResult(req);
-    console.log(req.body);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
