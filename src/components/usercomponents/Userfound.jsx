@@ -1,14 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useContext } from 'react';
 import UserContext from '../../context/user/userContext';
 import avatar from '../../images/avatar.jpg'
 import Follow from './Followcomponents/Follow';
 import Unfollow from './Followcomponents/Unfollow';
+import SameUser from './Followcomponents/SameUser';
 
 const Userfound = () => {
     const context = useContext(UserContext);
     const { user } = context;
-    const [follows, setFollows] = useState(true);
+    //first of all find logged in user details
+    const { loggedInUser, currentuser } = context;
+    useEffect(() => {
+        loggedInUser();
+    }, [])
+
+    const Fn = () => {
+        if (user && currentuser) {
+            if (user._id === currentuser._id)
+                return <SameUser />
+            else if (currentuser.following.indexOf(`${user._id}`) > -1)
+                return <Unfollow />
+            else
+                return <Follow />
+        }
+    }
+
     return (
         <div>
             <div className="container py-5">
@@ -23,7 +40,7 @@ const Userfound = () => {
                                 <h4 className="mb-2">{user.username}</h4>
                                 <p className="text-muted mb-4">@Puzzler <span className="mx-2">|</span> <a
                                     href="#!">{user.email}</a></p>
-                                {follows ? <Unfollow /> : <Follow />}
+                                <Fn />
                                 <div className="row mt-3">
                                     <p className="col mb-2 h5 text-info">Questions Solved</p>
                                     <p className="col text-muted mb-0">{user.practiceset.length}</p>

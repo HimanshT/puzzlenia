@@ -43,12 +43,12 @@ router.post('/finduser', fetchuser, async (req, res) => {
 router.put('/follow', fetchuser, async (req, res) => {
     //the person whom we have to follow
     const { username } = req.body;
+    const user1 = await User.find({ username: username })
     const value = await User.updateOne(
         {
             username: username
         }, { $inc: { followers: 1 } });
 
-    const user1 = await User.find({ username: username })
     // res.send(user1);
     //the person who will be following
     userId = req.user.id;

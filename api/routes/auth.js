@@ -17,7 +17,6 @@ router.post('/createUser', [
     //if there are errors return the errors
     // console.log(req.body);
     const errors = validationResult(req);
-    console.log(errors);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
@@ -91,7 +90,6 @@ router.get('/getuser', fetchuser, async (req, res) => {
         const user = await User.findById(userId).select("-password");
         res.send(user);
     } catch (err) {
-        console.log(err.message);
         res.status(500).send('internal server error');
     }
 })
