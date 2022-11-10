@@ -5,28 +5,15 @@ import UserContext from '../../context/user/userContext';
 import { toast } from 'react-toastify';
 
 function Questionset() {
-    const [data, setData] = useState([]);
+    const context = useContext(UserContext);
+    const { solvedQuestions, getSolvedQuestions, data, getExercise } = context;
     //function to get all the questions from database
     //We will useEffect so that our function runs only once when the page loads for exerciseset
     useEffect(() => {
-        const getExercise = async () => {
-            const response = await fetch("http://localhost:5000/api/question/getquestionset", {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "auth-token": localStorage.getItem('token')
-                }
-            });
-            const json = await response.json();
-            console.log(json);
-            setData(json);
-        }
         getExercise();
     }, []);
 
     //function to display the solved icon if the question is solved
-    const context = useContext(UserContext);
-    const { solvedQuestions, getSolvedQuestions } = context;
     useEffect(() => {
         if (localStorage.getItem('token')) {
             getSolvedQuestions();

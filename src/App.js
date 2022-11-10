@@ -11,7 +11,7 @@ import UserState from './context/user/UserState';
 import FindUser from "./components/usercomponents/FindUser";
 import Error from "./components/Error/Error";
 import Dashboard from "./components/usercomponents/DashboardComponents/Dashboard";
-
+import Cod from "./components/cod/Cod";
 function App() {
   return (
     <>
@@ -24,6 +24,7 @@ function App() {
               <Route path='/signup' element={<Signup />}></Route>
               <Route path='/practice' element={<Practice />}></Route>
               <Route path='/practice/:questionid' element={<SingleQuestion />}></Route>
+              <Route path='/cod' element={<Cod />}></Route>
               <Route path='/finduser' element={<FindUser />}></Route>
               <Route path='/dashboard' element={<Dashboard />}></Route>
               <Route path='*' element={<Error />}></Route>

@@ -6,6 +6,7 @@ const UserState = (props) => {
     const [solvedQuestions, setSolvedQuestions] = useState([]);
     const [user, setFinduser] = useState({});
     const [currentuser, setCurrentUser] = useState(null);
+    const [data, setData] = useState([]);
     //Get the array of solved question id's of the user
     const getSolvedQuestions = async () => {
         const response = await fetch(`${host}/api/user/solvedquestion`, {
@@ -88,8 +89,21 @@ const UserState = (props) => {
         setCurrentUser(json);
     }
 
+    //a function to find all the question in the database api call /api/question/getquestionset
+    const getExercise = async () => {
+        const response = await fetch("http://localhost:5000/api/question/getquestionset", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "auth-token": localStorage.getItem('token')
+            }
+        });
+        const json = await response.json();
+        setData(json);
+    }
+
     return (
-        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion, user, finduser, follow, unfollow, loggedInUser, currentuser }}>
+        <UserContext.Provider value={{ solvedQuestions, getSolvedQuestions, addSolvedQuestion, user, finduser, follow, unfollow, loggedInUser, currentuser, data, getExercise }}>
             {props.children}
         </UserContext.Provider>
     )
