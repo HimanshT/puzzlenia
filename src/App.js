@@ -12,6 +12,7 @@ import FindUser from "./components/usercomponents/FindUser";
 import Error from "./components/Error/Error";
 import Dashboard from "./components/usercomponents/DashboardComponents/Dashboard";
 import Cod from "./components/cod/Cod";
+import PrivateRoute from "./utils/PrivateRoute";
 function App() {
   return (
     <>
@@ -22,11 +23,13 @@ function App() {
               <Route path='/' element={<Landing />}></Route>
               <Route path='/signin' element={<Signin />}></Route>
               <Route path='/signup' element={<Signup />}></Route>
-              <Route path='/practice' element={<Practice />}></Route>
-              <Route path='/practice/:questionid' element={<SingleQuestion />}></Route>
-              <Route path='/cod' element={<Cod />}></Route>
-              <Route path='/finduser' element={<FindUser />}></Route>
-              <Route path='/dashboard' element={<Dashboard />}></Route>
+              <Route element={<PrivateRoute />}>
+                <Route path='/practice' element={<Practice />}></Route>
+                <Route path='/practice/:questionid' element={<SingleQuestion />}></Route>
+                <Route path='/cod' element={<Cod />}></Route>
+                <Route path='/finduser' element={<FindUser />}></Route>
+                <Route path='/dashboard' element={<Dashboard />}></Route>
+              </Route>
               <Route path='*' element={<Error />}></Route>
             </Routes>
           </div>
