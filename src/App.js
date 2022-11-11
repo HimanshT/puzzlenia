@@ -18,22 +18,19 @@ function App() {
     <>
       <UserState>
         <BrowserRouter>
-          <div className="container">
-            <Routes>
-              <Route path='/' element={<Landing />}></Route>
-              <Route path='/signin' element={<Signin />}></Route>
-              <Route path='/signup' element={<Signup />}></Route>
-              <Route element={<PrivateRoute />}>
-                <Route path='/practice' element={<Practice />}></Route>
-                <Route path='/practice/:questionid' element={<SingleQuestion />}></Route>
-                <Route path='/cod' element={<Cod />}></Route>
-                <Route path='/finduser' element={<FindUser />}></Route>
-                <Route path='/dashboard' element={<Dashboard />}></Route>
-              </Route>
-              <Route path='*' element={<Error />}></Route>
-            </Routes>
-          </div>
-          <Footer />
+          <Routes>
+            <Route path='/' element={<Landing />}></Route>
+            <Route path='/signin' element={<Signin />}></Route>
+            <Route path='/signup' element={<Signup />}></Route>
+            <Route element={<PrivateRoute />}>
+              <Route path='/practice' element={<Practice />}></Route>
+              <Route path='/practice/:questionid' element={<SingleQuestion />}></Route>
+              <Route path='/cod' element={<Cod />}></Route>
+              <Route path='/finduser' element={<FindUser />}></Route>
+              <Route path='/dashboard' element={<Dashboard />}></Route>
+            </Route>
+            <Route path='*' element={<Error />}></Route>
+          </Routes>
           <ToastContainer />
         </BrowserRouter>
       </UserState>

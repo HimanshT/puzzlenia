@@ -13,7 +13,7 @@ const Dashboard = () => {
         <>
             <Navbar />
             <div>
-                <section className="text-center" style={{ marginTop: "60px" }}>
+                <section className="text-center mb-2" style={{ marginTop: "60px" }}>
                     <div className="p-5 bg-image" style={{ backgroundImage: `url(${profilebg})`, height: "300px" }}></div>
                     <div className="card mx-4 mx-md-5 shadow-5-strong" style={{ marginTop: "-100px", background: "hsla(0,0%,100%,0.8", backdropFilter: "blur(30px" }}
                     >
